@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { store, history } from "./store";
+import { Switch, Route, Router } from 'react-router-dom';
+import App from './components/App';
+
+import './index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/" component={App}></Route>
+      </Switch>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
